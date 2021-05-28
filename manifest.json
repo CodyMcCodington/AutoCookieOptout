@@ -6,6 +6,21 @@
         {
             "matches": ["*://consent.youtube.com/*"],
             "js": ["scripts/youtube.js"]
+        },
+        {
+            "matches": [
+                "*://www.google.com/*",
+                "*://www.google.be/*",
+                "*://www.google.co.uk/*",
+                "*://www.google.fr/*",
+                "*://www.google.nl/*",
+                "*://consent.google.com/*",
+                "*://consent.google.be/*",
+                "*://consent.google.co.uk/*",
+                "*://consent.google.fr/*",
+                "*://consent.google.nl/*"
+            ],
+            "js": ["scripts/google.js"]
         }
     ]
 }
