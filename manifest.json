@@ -1,5 +1,11 @@
 {
     "manifest_version": 2,
     "version": "prerelease",
-    "name": "Auto Cookie Optout"
+    "name": "Auto Cookie Optout",
+    "content_scripts": [
+        {
+            "matches": ["*://consent.youtube.com/*"],
+            "js": ["scripts/youtube.js"]
+        }
+    ]
 }
