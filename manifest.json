@@ -21,6 +21,10 @@
                 "*://consent.google.nl/*"
             ],
             "js": ["scripts/google.js"]
+        },
+        {
+            "matches": ["*://consent.yahoo.com/*"],
+            "js": ["scripts/yahoo.js"]
         }
     ]
 }
