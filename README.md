@@ -4,8 +4,7 @@ You have the right to choose which cookies you're okay with. If your choice is '
 Non-exhaustive list of supported websites:
 
 - Websites with cookie consent plugins from common vendors like TrustArc, Didomi and CookiePro
-- Google.com and certain regional variations
-- YouTube
+- Various Google properties including web search, Google Maps and YouTube (including some regional variations)
 - Yahoo and affiliated websites like TechCrunch
 
 ## How we do it

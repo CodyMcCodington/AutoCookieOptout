@@ -13,7 +13,7 @@
     "content_scripts": [
         {
             "matches": ["*://consent.youtube.com/*"],
-            "js": ["clickers/youtube.js"]
+            "js": ["clickers/google.js"]
         },
         {
             "matches": [
@@ -22,6 +22,11 @@
                 "*://www.google.co.uk/*",
                 "*://www.google.fr/*",
                 "*://www.google.nl/*",
+                "*://images.google.com/*",
+                "*://images.google.be/*",
+                "*://images.google.co.uk/*",
+                "*://images.google.fr/*",
+                "*://images.google.nl/*",
                 "*://consent.google.com/*",
                 "*://consent.google.be/*",
                 "*://consent.google.co.uk/*",
