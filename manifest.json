@@ -2,10 +2,18 @@
     "manifest_version": 2,
     "version": "0.2",
     "name": "Auto Cookie Optout",
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "<all_urls>"
+    ],
     "content_scripts": [
         {
             "matches": ["*://consent.youtube.com/*"],
-            "js": ["scripts/youtube.js"]
+            "js": ["clickers/youtube.js"]
         },
         {
             "matches": [
@@ -20,16 +28,11 @@
                 "*://consent.google.fr/*",
                 "*://consent.google.nl/*"
             ],
-            "js": ["scripts/google.js"]
+            "js": ["clickers/google.js"]
         },
         {
             "matches": ["*://consent.yahoo.com/*"],
-            "js": ["scripts/yahoo.js"]
-        },
-        {
-            "matches": ["*://consent-pref.trustarc.com/*"],
-            "js": ["scripts/trustarc.js"],
-            "all_frames": true
+            "js": ["clickers/yahoo.js"]
         }
     ]
 }
