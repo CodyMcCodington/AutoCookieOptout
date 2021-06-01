@@ -1,3 +1,5 @@
+import { browser } from "webextension-polyfill-ts";
+
 function cancelRequest(request) {
     console.debug(`Cancelling request ${request.url}`);
     return { cancel: true };

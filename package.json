@@ -15,7 +15,8 @@
   "devDependencies": {
     "@parcel/config-webextension": "^2.0.0-nightly.2220",
     "@parcel/core": "2.0.0-alpha.3",
-    "parcel": "^2.0.0-beta.3.1"
+    "parcel": "^2.0.0-beta.3.1",
+    "webextension-polyfill-ts": "^0.25.0"
   },
   "dependencies": {
     "typescript": "^4.3.2"
