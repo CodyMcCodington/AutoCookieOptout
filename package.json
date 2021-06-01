@@ -1,5 +1,23 @@
 {
+  "targets": {
+    "webext-dev": {
+      "sourceMap": {
+        "inline": true,
+        "inlineSources": true
+      }
+    },
+    "webext-prod": {}
+  },
+  "scripts": {
+    "start": "parcel manifest.json --host localhost --target webext-dev",
+    "build": "parcel build manifest.json --target webext-prod"
+  },
   "devDependencies": {
-    "web-ext": "^6.1.0"
+    "@parcel/config-webextension": "^2.0.0-nightly.2220",
+    "@parcel/core": "2.0.0-alpha.3",
+    "parcel": "^2.0.0-beta.3.1"
+  },
+  "dependencies": {
+    "typescript": "^4.3.2"
   }
 }
