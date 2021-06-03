@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "parcel manifest.json --host localhost --target webext-dev",
-    "build": "parcel build manifest.json --target webext-prod"
+    "build": "parcel build manifest.json src/clickers/*.ts --target webext-prod"
   },
   "devDependencies": {
     "@parcel/config-webextension": "^2.0.0-nightly.2220",

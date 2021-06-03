@@ -3,7 +3,10 @@
     "version": "0.3",
     "name": "Auto Cookie Optout",
     "background": {
-        "scripts": ["background.ts"]
+        "scripts": [
+            "src/background/cancellers.ts",
+            "src/background/clickerTriggerers.ts"
+        ]
     },
     "permissions": [
         "webRequest",
@@ -12,8 +15,12 @@
     ],
     "content_scripts": [
         {
+            "matches": ["<all_urls>"],
+            "js": ["src/listener.ts"]
+        },
+        {
             "matches": ["*://consent.youtube.com/*"],
-            "js": ["clickers/google.ts"]
+            "js": ["src/clickers/google.ts"]
         },
         {
             "matches": [
@@ -33,11 +40,11 @@
                 "*://consent.google.fr/*",
                 "*://consent.google.nl/*"
             ],
-            "js": ["clickers/google.ts"]
+            "js": ["src/clickers/google.ts"]
         },
         {
             "matches": ["*://consent.yahoo.com/*"],
-            "js": ["clickers/yahoo.ts"]
+            "js": ["src/clickers/yahoo.ts"]
         }
     ]
 }
