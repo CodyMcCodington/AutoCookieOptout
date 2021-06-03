@@ -64,6 +64,7 @@ async function setupClicker(clickerSlug: string, matchPatterns: string[]) {
 
 const clickersToSetup: Record<Vendor, string[]> = {
     [Vendor.CookieBot]: ["https://consent.cookiebot.com/uc.js"],
+    [Vendor.Consensu]: ["https://quantcast.mgr.consensu.org/choice/*"],
 };
 
 for (const clickerToSetup of Object.keys(clickersToSetup)) {

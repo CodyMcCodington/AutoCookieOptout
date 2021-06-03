@@ -11,7 +11,6 @@ browser.webRequest.onBeforeRequest.addListener(
     {
         urls: [
             "https://sdk.privacy-center.org/*",
-            "https://quantcast.mgr.consensu.org/*"
         ],
         types: ["script"],
     },
