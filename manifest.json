@@ -45,6 +45,11 @@
         {
             "matches": ["*://consent.yahoo.com/*"],
             "js": ["src/clickers/yahoo.ts"]
+        },
+        {
+            "matches": ["*://consent-pref.trustarc.com/*"],
+            "js": ["src/clickers/trustarc.ts"],
+            "all_frames": true
         }
     ]
 }

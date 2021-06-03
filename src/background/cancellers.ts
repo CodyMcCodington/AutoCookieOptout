@@ -10,7 +10,6 @@ browser.webRequest.onBeforeRequest.addListener(
     cancelRequest,
     {
         urls: [
-            "https://consent.truste.com/*",
             "https://sdk.privacy-center.org/*",
             "https://quantcast.mgr.consensu.org/*"
         ],
