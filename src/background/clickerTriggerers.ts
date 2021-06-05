@@ -69,6 +69,11 @@ const clickersToSetup: Record<Vendor, string[]> = {
         "https://sdk.privacy-center.org/loader.js?*",
         "https://sdk.privacy-center.org/*/loader.js?*",
     ],
+    [Vendor.CookiePro]: [
+        "https://cookie-cdn.cookiepro.com/consent/*",
+        "https://cdn.cookielaw.org/consent/*",
+        "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+    ],
 };
 
 for (const clickerToSetup of Object.keys(clickersToSetup)) {
