@@ -4,7 +4,6 @@
     "name": "Auto Cookie Optout",
     "background": {
         "scripts": [
-            "src/background/cancellers.ts",
             "src/background/clickerTriggerers.ts"
         ]
     },
