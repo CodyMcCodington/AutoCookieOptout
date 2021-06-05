@@ -6,13 +6,15 @@ function cancelRequest(request: { url: string, tabId: number }) {
     return { cancel: true };
 }
 
-browser.webRequest.onBeforeRequest.addListener(
-    cancelRequest,
-    {
-        urls: [
-            "https://sdk.privacy-center.org/*",
-        ],
-        types: ["script"],
-    },
-    ["blocking"]
-);
+const cancelPatterns = [];
+
+if (cancelPatterns.length > 0) {
+    browser.webRequest.onBeforeRequest.addListener(
+        cancelRequest,
+        {
+            urls: cancelPatterns,
+            types: ["script"],
+        },
+        ["blocking"]
+    );
+}

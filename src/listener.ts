@@ -2,11 +2,13 @@ import { browser } from "webextension-polyfill-ts";
 import handleCookieBot from "./clickers/cookiebot";
 import handleConsensu from "./clickers/consensu";
 import Vendor from './vendors';
+import handleDidomi from "./clickers/didomi";
 
 // To avoid unsafe dynamic imports, a mapping in needed
 const mapper: Record<Vendor, Function> = {
     [Vendor.CookieBot]: handleCookieBot,
     [Vendor.Consensu]: handleConsensu,
+    [Vendor.Didomi]: handleDidomi,
 };
 
 browser.runtime.onMessage.addListener(message => {
