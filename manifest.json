@@ -5,6 +5,7 @@
     "icons": {
         "96": "icon96.svg"
     },
+    "description": "Skip cookie walls! Automatically opt out of optional cookies on supported websites.",
     "background": {
         "scripts": [
             "src/background/clickerTriggerers.ts"
