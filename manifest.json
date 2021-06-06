@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "version": "0.4",
+    "version": "0.4.1",
     "name": "Auto Cookie Optout",
     "icons": {
         "96": "icon96.svg"
@@ -54,5 +54,10 @@
             "js": ["src/clickers/trustarc.ts"],
             "all_frames": true
         }
-    ]
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{d967193f-41e8-4cc7-8811-3278a9f62ad4}"
+        }
+    }
 }
