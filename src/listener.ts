@@ -14,10 +14,10 @@ const mapper: Record<Vendor, Function> = {
 };
 
 browser.runtime.onMessage.addListener(message => {
-    console.log(`Got message '${message}' from the background script`);
+    console.debug(`Got message '${message}' from the background script`);
 
     if (mapper[message]) {
-        console.log('Firing up script');
+        console.debug('Firing up clicker');
         mapper[message]();
     }
 });

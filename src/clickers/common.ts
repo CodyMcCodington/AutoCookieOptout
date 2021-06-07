@@ -5,7 +5,6 @@ function clickElement(selector: string, ignoreIfNotPresent = false) {
     } else if (!element && ignoreIfNotPresent) {
         return;
     } else {
-        console.log(element);
         throw new Error(`${selector} does not refer to HTML element`);
     }
 }
