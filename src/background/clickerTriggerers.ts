@@ -1,5 +1,5 @@
 import { browser } from "webextension-polyfill-ts";
-import Vendor from "../vendors";
+import { vendorPatternLists } from "../vendors";
 
 const unhandledQueue = {};
 const tabsThatCanReceive = [];
@@ -62,20 +62,6 @@ async function setupClicker(clickerSlug: string, matchPatterns: string[]) {
     )
 }
 
-const clickersToSetup: Record<Vendor, string[]> = {
-    [Vendor.CookieBot]: ["https://consent.cookiebot.com/uc.js"],
-    [Vendor.Consensu]: ["https://quantcast.mgr.consensu.org/choice/*"],
-    [Vendor.Didomi]: [
-        "https://sdk.privacy-center.org/loader.js?*",
-        "https://sdk.privacy-center.org/*/loader.js?*",
-    ],
-    [Vendor.CookiePro]: [
-        "https://cookie-cdn.cookiepro.com/consent/*",
-        "https://cdn.cookielaw.org/consent/*",
-        "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
-    ],
-};
-
-for (const clickerToSetup of Object.keys(clickersToSetup)) {
-    setupClicker(clickerToSetup, clickersToSetup[clickerToSetup]);
+for (const vendorPatternList of Object.keys(vendorPatternLists)) {
+    setupClicker(vendorPatternList, vendorPatternLists[vendorPatternList]);
 }
