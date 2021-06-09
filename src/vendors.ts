@@ -5,4 +5,18 @@ enum Vendor {
     CookiePro = 'cookiepro',
 };
 
-export default Vendor;
+const vendorPatternLists: Record<Vendor, string[]> = Object.freeze({
+    [Vendor.CookieBot]: ["https://consent.cookiebot.com/uc.js"],
+    [Vendor.Consensu]: ["https://quantcast.mgr.consensu.org/choice/*"],
+    [Vendor.Didomi]: [
+        "https://sdk.privacy-center.org/loader.js?*",
+        "https://sdk.privacy-center.org/*/loader.js?*",
+    ],
+    [Vendor.CookiePro]: [
+        "https://cookie-cdn.cookiepro.com/consent/*",
+        "https://cdn.cookielaw.org/consent/*",
+        "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+    ],
+});
+
+export { Vendor, vendorPatternLists };

@@ -1,7 +1,7 @@
 import { browser } from "webextension-polyfill-ts";
 import handleCookieBot from "./clickers/cookiebot";
 import handleConsensu from "./clickers/consensu";
-import Vendor from './vendors';
+import { Vendor } from './vendors';
 import handleDidomi from "./clickers/didomi";
 import handleCookiePro from "./clickers/cookiepro";
 
