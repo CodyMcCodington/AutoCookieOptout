@@ -3,6 +3,7 @@ async function handle() {
     // inject a script tag into the page instead
     const scriptTag = document.createElement('script');
     scriptTag.text = `
+        let injectionWaitTries = 0;
         function optout() {
             if (typeof window.Didomi !== 'undefined' || document.querySelector('#didomi-popup')) {
                 if (window.Didomi.getUserStatus().purposes.consent.disabled.length === 0) {
@@ -12,8 +13,13 @@ async function handle() {
                     console.debug('Assuming already opted out');
                 }
             } else {
-                console.debug('Wait for window.Didomi or dialog to appear');
-                setTimeout(optout, 50);
+                injectionWaitTries++;
+                if (injectionWaitTries < 100) {
+                    console.debug('Wait for window.Didomi or dialog to appear');
+                    setTimeout(optout, 50);
+                } else {
+                    console.debug('Giving up waiting. Possible interference from other extensions.');
+                }
             }
         }
         optout();
