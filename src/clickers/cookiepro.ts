@@ -7,10 +7,16 @@ async function handle() {
     // inject a script tag into the page instead
     const scriptTag = document.createElement('script');
     scriptTag.text = `
+        let injectionWaitTries = 0;
         function waitForInjection() {
             if (typeof Optanon === 'undefined') {
-                console.debug('Waiting for Optanon object injection');
-                setTimeout(waitForInjection, 50);
+                injectionWaitTries++;
+                if (injectionWaitTries < 100) {
+                    console.debug('Waiting for Optanon object injection');
+                    setTimeout(waitForInjection, 50);
+                } else {
+                    console.debug('Giving up waiting. Possible interference from other extensions.');
+                }
             } else if (!Optanon.IsAlertBoxClosedAndValid()) {
                 console.debug('Consent does not seem to be registered yet');
                 optout();
