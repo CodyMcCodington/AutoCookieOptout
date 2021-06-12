@@ -13,8 +13,7 @@ const vendorPatternLists: Record<Vendor, string[]> = Object.freeze({
         "https://sdk.privacy-center.org/*/loader.js?*",
     ],
     [Vendor.CookiePro]: [
-        "https://cookie-cdn.cookiepro.com/consent/*",
-        "https://cdn.cookielaw.org/consent/*",
+        "https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js",
         "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
     ],
 });
