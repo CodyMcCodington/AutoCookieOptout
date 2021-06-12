@@ -1,6 +1,6 @@
 import { clickWhenFound } from "./common";
 
-async function main() {
+(async function() {
     if (document.location.pathname === '/') {
         await clickWhenFound('.shp');
 
@@ -24,6 +24,4 @@ async function main() {
         submitForm();
         console.debug('TrustArc popup handled');
     }
-}
-
-main();
+})();
