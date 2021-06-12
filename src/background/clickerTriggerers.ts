@@ -45,7 +45,7 @@ async function setupClicker(clickerSlug: string, matchPatterns: string[]) {
     async function triggerClickerForRequest(request: { url: string, tabId: number }) {
         if (tabsThatCanReceive.includes(request.tabId) && await tabInCompleteState(request.tabId)) {
             console.debug(`Sending clicker trigger '${clickerSlug}' to tab ${request.tabId} because of ${request.url}`);
-            browser.tabs.sendMessage(request.tabId, unhandledQueue[request.tabId]);
+            browser.tabs.sendMessage(request.tabId, clickerSlug);
         } else {
             console.debug(`Queuing clicker trigger '${clickerSlug}' for tab ${request.tabId} because of ${request.url}`);
             unhandledQueue[request.tabId] = clickerSlug;
