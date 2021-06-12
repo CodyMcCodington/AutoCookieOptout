@@ -9,12 +9,13 @@
     "webext-prod": {}
   },
   "scripts": {
-    "start": "parcel manifest.json --host localhost --target webext-dev",
-    "build": "parcel build manifest.json src/clickers/*.ts --target webext-prod"
+    "start": "parcel manifest.json src/pages/*.html --host localhost --target webext-dev",
+    "build": "parcel build manifest.json src/pages/*.html --target webext-prod"
   },
   "devDependencies": {
     "@parcel/config-webextension": "^2.0.0-nightly.2220",
     "@parcel/core": "2.0.0-alpha.3",
+    "@parcel/transformer-sass": "2.0.0-nightly.690",
     "parcel": "^2.0.0-beta.3.1",
     "webextension-polyfill-ts": "^0.25.0"
   },
