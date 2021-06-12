@@ -1,3 +1,15 @@
+function attachScriptToBodyLoad(scriptElement: HTMLScriptElement) {
+    if (document.body) {
+        console.debug('Inject script into body');
+        document.body.appendChild(scriptElement);
+    } else {
+        console.debug('Deferring script injection until page load');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.appendChild(scriptElement);
+        });
+    }
+}
+
 function clickElement(selector: string, ignoreIfNotPresent = false) {
     const element = document.querySelector(selector);
     if (element instanceof HTMLElement) {
@@ -68,6 +80,7 @@ async function clickAllWhenFound(selector: string) {
 }
 
 export {
+    attachScriptToBodyLoad,
     clickElement,
     clickAllElements,
     clickWhenFound,

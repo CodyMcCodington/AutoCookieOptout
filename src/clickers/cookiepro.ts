@@ -1,3 +1,5 @@
+import { attachScriptToBodyLoad } from "./common";
+
 declare namespace Optanon {
     function RejectAll(): void;
 };
@@ -45,7 +47,7 @@ async function handle() {
 
         waitForInjection();
     `;
-    document.body.appendChild(scriptTag);
+    attachScriptToBodyLoad(scriptTag);
 }
 
 export default handle;

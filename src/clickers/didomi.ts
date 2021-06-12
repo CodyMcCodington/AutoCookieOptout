@@ -1,3 +1,5 @@
+import { attachScriptToBodyLoad } from "./common";
+
 async function handle() {
     // It looks like window.Didomi cannot be interacted with from content scripts, so
     // inject a script tag into the page instead
@@ -24,7 +26,7 @@ async function handle() {
         }
         optout();
     `;
-    document.body.appendChild(scriptTag);
+    attachScriptToBodyLoad(scriptTag);
 }
 
 export default handle;
