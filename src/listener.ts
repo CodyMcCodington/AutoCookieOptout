@@ -13,12 +13,18 @@ const mapper: Record<Vendor, Function> = {
     [Vendor.CookiePro]: handleCookiePro,
 };
 
+const vendorsTriggered = [];
+
 browser.runtime.onMessage.addListener(message => {
     console.debug(`Got message '${message}' from the background script`);
 
     if (mapper[message]) {
-        console.debug('Firing up clicker');
-        mapper[message]();
+        if (!vendorsTriggered.includes(mapper[message])) {
+            console.debug('Firing up clicker');
+            mapper[message]();
+        } else {
+            console.debug('Clicker has been triggered on this page before, ignoring');
+        }
     }
 });
 
