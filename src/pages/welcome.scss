@@ -1,0 +1,106 @@
+@font-face {
+    font-family: Roboto;
+    src: url(Roboto-Regular.ttf);
+}
+
+html {
+    background: #1a2400;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: #fff;
+}
+
+@keyframes logoIn {
+    from {
+        opacity: 0;
+        width: 5%;
+    }
+
+    to {
+        opacity: 1;
+        width: 40%;
+    }
+}
+
+@keyframes textFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+button {
+    padding: 15px;
+    margin: 0 10px;
+    background: rgba(240, 255, 240, 1);
+    box-shadow: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container {
+    margin: 20px auto 0;
+    max-width: 800px;
+    text-align: center;
+
+    .aco-logo {
+        display: flex;
+        height: 500px;
+        align-items: center;
+        justify-content: center;
+        
+        img {
+            animation-name: logoIn;
+            animation-duration: 0.2s;
+            animation-timing-function: ease-in;
+            width: 40%;
+            max-width: 280px;
+        }
+    }
+    
+    .stack {
+        display: grid;
+
+        > * {
+            grid-area: 1 / 1 / 2 / 2;
+            display: none;
+
+            &.visible {
+                display: block;
+            }
+        }
+    
+        .prompt {
+            opacity: 0;
+            animation: textFadeIn 1s ease-in 0.1s;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    .deemphasized {
+        p, a {
+            color: rgb(210, 230, 210);
+        }
+    }
+    
+    .patternList {
+        display: none;
+        font-family: 'Courier New';
+        white-space: pre-line;
+        font-size: 18px;
+        color: #ddeedd;
+        line-height: 1.25;
+
+        &.visible {
+            display: block;
+            animation: textFadeIn 0.2s ease-in;
+        }
+    }
+}

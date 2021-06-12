@@ -8,7 +8,8 @@
     "description": "Skip cookie walls! Automatically opt out of optional cookies on supported websites.",
     "background": {
         "scripts": [
-            "src/background/clickerTriggerers.ts"
+            "src/background/clickerTriggerers.ts",
+            "src/background/misc.ts"
         ]
     },
     "permissions": [

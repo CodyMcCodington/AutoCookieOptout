@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Auto Cookie Optout was installed</title>
+    <meta charset="UTF-8" /> 
+    <link rel="stylesheet" href="welcome.scss">
+</head>
+<body>
+    <div class="container">
+        <div class="aco-logo">
+            <img src="logo.svg" alt="Auto Cookie Optout logo" />
+        </div>
+        <div class="stack">
+            <div class="prompt visible">
+                <p>Let's get you all set up for <strong>Auto Cookie Optout</strong>.</p>
+                <div class="actions">
+                    <button data-element-to-open="actionNoContentBlocker">I don't have a content blocker</button>
+                    <button data-element-to-open="actionContentBlocker">I have a content blocker</button>
+                </div>
+            </div>
+            <div class="actionNoContentBlocker">
+                <p>You're good to go. Have fun online!</p>
+            </div>
+            <div class="actionContentBlocker">
+                <p>If your content blocker has a feature to block cookie popups, you may want to adjust its settings. ACO will only be able to opt you out if it can communicate with the cookie popups.</p>
+
+                <div class="deemphasized">
+                    <p><a href="https://github.com/CodyMcCodington/AutoCookieOptout/blob/main/README.md#cant-i-just-install-ublock-origin-to-get-rid-of-cookie-popups" target="_blank">Why ACO opts you out instead of blocking cookie popups</a></p>
+                    <p><button data-element-to-open="patternList">What should I whitelist?</button></p>
+                    <div class="patternList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="welcome.ts"></script>
+</body>
+</html>
