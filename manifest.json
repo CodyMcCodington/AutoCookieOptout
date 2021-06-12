@@ -54,6 +54,11 @@
             "matches": ["*://consent-pref.trustarc.com/*"],
             "js": ["src/clickers/trustarc.ts"],
             "all_frames": true
+        },
+        {
+            "matches": ["*://gdpr-consent-tool.privacymanager.io/*"],
+            "js": ["src/clickers/liveramp.ts"],
+            "all_frames": true
         }
     ],
     "browser_specific_settings": {
