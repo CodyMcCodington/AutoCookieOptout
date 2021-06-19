@@ -1,8 +1,17 @@
 # Auto Cookie Optout
-You have the right to choose which cookies you're okay with. If your choice is 'only mandatory cookies', we can try to automatically submit your choice so you'll see less cookie popups.
 
-## Our approach
-Auto Cookie Optout tries to opt out of all optional cookies on supported sites. Since every site works differently, it's not easy to scale this approach. ACO currently focuses on websites that use common cookie consent scripts as well as a limited group of popular websites.
+You have the right to choose which cookies you're okay with. If your choice is "as little as possible", Auto Cookie Optout can opt you out of optional cookies on supported websites.
+
+Traditional content blockers may cause the following problems when blocking cookie popups:
+- Leftovers of cookie popups
+- The scroll bar of the website being gone
+- Site features acting strangely because they're waiting for the result of the cookie consent process
+
+ACO's approach differs from those content blockers in that it actively signals the website that you don't consent to optional cookies. With Auto Cookie Optout, sites should behave the same as when you manually opt out in the popup.
+
+## How to install
+- [Download at Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/auto-cookie-optout/)
+- Older versions may still be available from the Releases section for sideloading
 
 ## Questions
 
