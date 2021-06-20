@@ -1,4 +1,4 @@
-import { clickElement } from "./common";
+import { clickElement } from "../common";
 
 if (document.location.hostname.match(/^(www|images)\.google\.[a-z]+$/)) {
     // Page 1 when consent is collected through an in-page popup

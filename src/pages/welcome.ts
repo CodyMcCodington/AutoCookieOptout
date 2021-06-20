@@ -1,4 +1,4 @@
-import { vendorPatternLists } from "../vendors";
+import { triggeredVendorPatternLists } from "../indirectClickers/vendors";
 
 document.querySelectorAll('[data-element-to-open]').forEach((element) => {
     if (element instanceof HTMLElement) {
@@ -11,4 +11,4 @@ document.querySelectorAll('[data-element-to-open]').forEach((element) => {
     }
 });
 
-document.querySelector('.patternList').textContent = Object.values(vendorPatternLists).map((list) => list.join('\n')).join('\n');
+document.querySelector('.patternList').textContent = Object.values(triggeredVendorPatternLists).map((list) => list.join('\n')).join('\n');

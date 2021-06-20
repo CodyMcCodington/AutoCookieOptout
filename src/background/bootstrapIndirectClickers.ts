@@ -1,5 +1,5 @@
 import { browser } from "webextension-polyfill-ts";
-import { vendorPatternLists } from "../vendors";
+import { triggeredVendorPatternLists } from "../indirectClickers/vendors";
 
 const unhandledQueue = {};
 const tabsThatCanReceive = [];
@@ -62,6 +62,6 @@ async function setupClicker(clickerSlug: string, matchPatterns: string[]) {
     )
 }
 
-for (const vendorPatternList of Object.keys(vendorPatternLists)) {
-    setupClicker(vendorPatternList, vendorPatternLists[vendorPatternList]);
+for (const vendorPatternList of Object.keys(triggeredVendorPatternLists)) {
+    setupClicker(vendorPatternList, triggeredVendorPatternLists[vendorPatternList]);
 }

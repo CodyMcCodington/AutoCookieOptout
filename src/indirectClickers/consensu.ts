@@ -1,4 +1,4 @@
-import { clickWhenFound } from "./common";
+import { clickWhenFound } from "../common";
 
 async function handle() {
     if (document.cookie.match('euconsent-v2=')) {

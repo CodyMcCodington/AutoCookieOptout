@@ -1,4 +1,4 @@
-import { attachScriptToBodyLoad } from "./common";
+import { attachScriptToBodyLoad } from "../common";
 
 async function handle() {
     // It looks like window.Didomi cannot be interacted with from content scripts, so
