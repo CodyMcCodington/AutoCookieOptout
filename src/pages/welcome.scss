@@ -1,3 +1,5 @@
+$breakpoint: 500px;
+
 @font-face {
     font-family: Roboto;
     src: url(Roboto-Regular.ttf);
@@ -7,6 +9,10 @@ html {
     background: #1a2400;
     color: #fff;
     font-family: 'Roboto', sans-serif;
+
+    @media(min-width: $breakpoint) {
+        line-height: 1.5;
+    }
 }
 
 a {
@@ -15,13 +21,13 @@ a {
 
 @keyframes logoIn {
     from {
-        opacity: 0;
         width: 5%;
+        opacity: 0;
     }
 
     to {
+        width: 280px;
         opacity: 1;
-        width: 40%;
     }
 }
 
@@ -35,9 +41,13 @@ a {
     }
 }
 
+body {
+    margin: 0 20px;
+}
+
 button {
     padding: 15px;
-    margin: 0 10px;
+    margin: 2px 10px;
     background: rgba(240, 255, 240, 1);
     box-shadow: none;
     border: none;
@@ -46,13 +56,14 @@ button {
 }
 
 .container {
-    margin: 20px auto 0;
-    max-width: 800px;
+    margin: 50px auto 0;
+    max-width: 550px;
     text-align: center;
 
     .aco-logo {
         display: flex;
-        height: 500px;
+        min-height: 300px;
+        height: 45vh;
         align-items: center;
         justify-content: center;
         
@@ -60,7 +71,6 @@ button {
             animation-name: logoIn;
             animation-duration: 0.2s;
             animation-timing-function: ease-in;
-            width: 40%;
             max-width: 280px;
         }
     }
@@ -82,25 +92,21 @@ button {
             animation: textFadeIn 1s ease-in 0.1s;
             animation-fill-mode: forwards;
         }
+
+        .actions {
+            margin: 20px 0;
+        }
+    }
+
+    .longText {
+        @media(min-width: $breakpoint) {
+            text-align: justify;
+        }
     }
 
     .deemphasized {
         p, a {
             color: rgb(210, 230, 210);
-        }
-    }
-    
-    .patternList {
-        display: none;
-        font-family: 'Courier New';
-        white-space: pre-line;
-        font-size: 18px;
-        color: #ddeedd;
-        line-height: 1.25;
-
-        &.visible {
-            display: block;
-            animation: textFadeIn 0.2s ease-in;
         }
     }
 }

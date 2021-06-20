@@ -10,5 +10,3 @@ document.querySelectorAll('[data-element-to-open]').forEach((element) => {
         }
     }
 });
-
-document.querySelector('.patternList').textContent = Object.values(triggeredVendorPatternLists).map((list) => list.join('\n')).join('\n');
