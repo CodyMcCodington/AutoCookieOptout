@@ -53,6 +53,27 @@ async function clickAllWhenFound(selector: string) {
     clickAllElements(selector);
 }
 
+function retryUntil<T>(func: () => boolean, retryInterval: number, maxAttempts?: number) {
+    return new Promise<void>((resolve, reject) => {
+        let attemptsDone = 0;
+
+        function doAttempt() {
+            const outcome = func();
+            if (outcome) {
+                console.debug(`Attempt ${attemptsDone + 1} successful`);
+                resolve();
+            } else if (attemptsDone < maxAttempts || maxAttempts === undefined) {
+                attemptsDone++;
+                console.debug(`Attempt ${attemptsDone} unsuccessful, snoozing`)
+                setTimeout(doAttempt, retryInterval);
+            } else {
+                reject();
+            }
+        }
+        doAttempt();
+    })
+}
+
 async function waitUntilFound(selector: string) {
     return new Promise<void>((resolve) => {
         function callback(document: Document) {
@@ -83,4 +104,5 @@ export {
     clickAllElements,
     clickWhenFound,
     clickAllWhenFound,
+    retryUntil,
 };

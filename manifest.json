@@ -51,6 +51,18 @@
             "js": ["src/directClickers/yahoo.ts"]
         },
         {
+            "matches": [
+                "*://*.stackexchange.com/*",
+                "*://stackoverflow.com/*",
+                "*://meta.stackoverflow.com/*",
+                "*://serverfault.com/*",
+                "*://meta.serverfault.com/*",
+                "*://superuser.com/*",
+                "*://meta.superuser.com/*"
+            ],
+            "js": ["src/directClickers/stackexchange.ts"]
+        },
+        {
             "matches": ["*://consent-pref.trustarc.com/*"],
             "js": ["src/directClickers/trustarc.ts"],
             "all_frames": true
