@@ -61,6 +61,9 @@
             "all_frames": true
         }
     ],
+    "web_accessible_resources": [
+        "src/indirectClickers/*.pagescript.ts"
+    ],
     "browser_specific_settings": {
         "gecko": {
             "id": "{d967193f-41e8-4cc7-8811-3278a9f62ad4}"
