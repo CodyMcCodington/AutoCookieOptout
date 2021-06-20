@@ -1,4 +1,5 @@
 import { browser } from "webextension-polyfill-ts";
+import { log } from "./logger";
 
 function attachPageScriptForClicker(clickerSlug: string) {
     const scriptTag = document.createElement('script');
@@ -11,10 +12,10 @@ function attachPageScriptForClicker(clickerSlug: string) {
 
 function attachScriptToBodyLoad(scriptElement: HTMLScriptElement) {
     if (document.body) {
-        console.debug('Inject script into body');
+        log('Inject script into body');
         document.body.appendChild(scriptElement);
     } else {
-        console.debug('Deferring script injection until page load');
+        log('Deferring script injection until page load');
         document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(scriptElement);
         });
@@ -24,7 +25,7 @@ function attachScriptToBodyLoad(scriptElement: HTMLScriptElement) {
 function clickElement(selector: string, ignoreIfNotPresent = false) {
     const element = document.querySelector(selector);
     if (element instanceof HTMLElement) {
-        console.debug(`Clicking ${selector}`);
+        log(`Clicking ${selector}`);
         element.click();
     } else if (!element && ignoreIfNotPresent) {
         return;
@@ -34,7 +35,7 @@ function clickElement(selector: string, ignoreIfNotPresent = false) {
 }
 
 function clickAllElements(selector: string) {
-    console.debug(`Clicking all matches of ${selector}`);
+    log(`Clicking all matches of ${selector}`);
     const elements = document.querySelectorAll(selector);
     for (const element of elements) {
         if (element instanceof HTMLElement) {
@@ -60,11 +61,11 @@ function retryUntil<T>(func: () => boolean, retryInterval: number, maxAttempts?:
         function doAttempt() {
             const outcome = func();
             if (outcome) {
-                console.debug(`Attempt ${attemptsDone + 1} successful`);
+                log(`Attempt ${attemptsDone + 1} successful`);
                 resolve();
             } else if (attemptsDone < maxAttempts || maxAttempts === undefined) {
                 attemptsDone++;
-                console.debug(`Attempt ${attemptsDone} unsuccessful, snoozing`)
+                log(`Attempt ${attemptsDone} unsuccessful, snoozing`)
                 setTimeout(doAttempt, retryInterval);
             } else {
                 reject();
@@ -77,9 +78,9 @@ function retryUntil<T>(func: () => boolean, retryInterval: number, maxAttempts?:
 async function waitUntilFound(selector: string) {
     return new Promise<void>((resolve) => {
         function callback(document: Document) {
-            console.debug(`Checking for ${selector}`);
+            log(`Checking for ${selector}`);
             if (document.querySelector(selector)) {
-                console.debug(`Found ${selector}`);
+                log(`Found ${selector}`);
                 observer.disconnect();
                 resolve();
             }

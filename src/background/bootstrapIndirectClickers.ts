@@ -1,12 +1,13 @@
 import { browser } from "webextension-polyfill-ts";
 import { triggeredVendorPatternLists } from "../indirectClickers/vendors";
+import { log } from "../logger";
 
 const unhandledQueue = {};
 const tabsThatCanReceive = [];
 
 function catchUpOnMessages(tabId: number) {
     if (unhandledQueue[tabId]) {
-        console.debug(`Sending queued clicker trigger ${unhandledQueue[tabId]} to`
+        log(`Sending queued clicker trigger ${unhandledQueue[tabId]} to`
             + ` tab ${tabId}`);
         browser.tabs.sendMessage(tabId, unhandledQueue[tabId]);
         delete unhandledQueue[tabId];
@@ -15,7 +16,7 @@ function catchUpOnMessages(tabId: number) {
 
 browser.runtime.onMessage.addListener((message, sender) => {
     if (message === 'tabReady') {
-        console.debug(`Tab ${sender.tab.id} pinged us`);
+        log(`Tab ${sender.tab.id} pinged us`);
         tabsThatCanReceive.push(sender.tab.id);
         catchUpOnMessages(sender.tab.id);
     }
@@ -23,11 +24,11 @@ browser.runtime.onMessage.addListener((message, sender) => {
 
 browser.tabs.onUpdated.addListener(async (tabId) => {
     if (await tabInCompleteState(tabId)) {
-        console.debug(`Tab ${tabId} has flipped to 'complete' state`);
+        log(`Tab ${tabId} has flipped to 'complete' state`);
         tabsThatCanReceive.push(tabId);
         catchUpOnMessages(tabId);
     } else if (tabsThatCanReceive.includes(tabId)) {
-        console.debug(`Tab ${tabId} no longer considered to accept messages`);
+        log(`Tab ${tabId} no longer considered to accept messages`);
         tabsThatCanReceive.splice(tabsThatCanReceive.indexOf(tabId), 1)
     }
 });
@@ -44,10 +45,10 @@ async function tabInCompleteState(tabId: number) {
 async function setupClicker(clickerSlug: string, matchPatterns: string[]) {
     async function triggerClickerForRequest(request: { url: string, tabId: number }) {
         if (tabsThatCanReceive.includes(request.tabId) && await tabInCompleteState(request.tabId)) {
-            console.debug(`Sending clicker trigger '${clickerSlug}' to tab ${request.tabId} because of ${request.url}`);
+            log(`Sending clicker trigger '${clickerSlug}' to tab ${request.tabId} because of ${request.url}`);
             browser.tabs.sendMessage(request.tabId, clickerSlug);
         } else {
-            console.debug(`Queuing clicker trigger '${clickerSlug}' for tab ${request.tabId} because of ${request.url}`);
+            log(`Queuing clicker trigger '${clickerSlug}' for tab ${request.tabId} because of ${request.url}`);
             unhandledQueue[request.tabId] = clickerSlug;
         }
         return {};

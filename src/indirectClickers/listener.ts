@@ -5,6 +5,7 @@ import { TriggeredVendor } from './vendors';
 import handleDidomi from "./didomi";
 import handleCookiePro from "./cookiepro";
 import handleTrustArc from "./trustarc";
+import { log } from "../logger";
 
 // To avoid unsafe dynamic imports, a mapping in needed
 const mapper: Record<TriggeredVendor, Function> = {
@@ -18,21 +19,21 @@ const mapper: Record<TriggeredVendor, Function> = {
 const vendorsTriggered = [];
 
 browser.runtime.onMessage.addListener(message => {
-    console.debug(`Got message '${message}' from the background script`);
+    log(`Got message '${message}' from the background script`);
 
     if (mapper[message]) {
         if (!vendorsTriggered.includes(mapper[message])) {
             if (document.cookie.match('euconsent-v2=')) {
-                console.debug('Consent cookie found, assuming already opted out');
+                log('Consent cookie found, assuming already opted out');
             } else {
-                console.debug('Firing up clicker');
+                log('Firing up clicker');
                 mapper[message]();
             }
         } else {
-            console.debug('Clicker has been triggered on this page before, ignoring');
+            log('Clicker has been triggered on this page before, ignoring');
         }
     }
 });
 
 browser.runtime.sendMessage('tabReady');
-console.debug('Pinged background script');
+log('Pinged background script');

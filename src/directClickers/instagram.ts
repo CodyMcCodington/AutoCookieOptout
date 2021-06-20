@@ -1,11 +1,12 @@
 import { clickWhenFound } from "../common";
+import { log } from "../logger";
 
 (async function() {
     if (document.cookie === '') {
         await clickWhenFound('.aOOlW.HoLwm');
         await clickWhenFound('.aOOlW.bIiDR');
-        console.debug('Instagram popup dismissed');
+        log('Instagram popup dismissed');
     } else {
-        console.debug('Cookies have been set, assuming already opted out');
+        log('Cookies have been set, assuming already opted out');
     }
 })();

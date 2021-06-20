@@ -1,4 +1,5 @@
 import { clickAllWhenFound, clickWhenFound } from "../common";
+import { log } from "../logger";
 
 (async function() {
     const searchParams = new URLSearchParams(document.location.search);
@@ -20,12 +21,12 @@ import { clickAllWhenFound, clickWhenFound } from "../common";
                 if (formCloseTries < 10) {
                     setTimeout(submitForm, 50);
                 } else {
-                    console.debug('Cookie popup may still be open due to vendor quirks')
+                    log('Cookie popup may still be open due to vendor quirks')
                 }
             }
         }
         submitForm();
-        console.debug('TrustArc popup handled');
+        log('TrustArc popup handled');
     }
     // Variant that is initiated through Trustarc's indirect clicker which creates an
     // iframe we have to hook in to directly
