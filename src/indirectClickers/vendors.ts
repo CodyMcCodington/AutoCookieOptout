@@ -3,7 +3,7 @@
 enum TriggeredVendor {
     CookieBot = 'cookiebot',
     CookiePro = 'cookiepro',
-    Consensu = 'consensu',
+    Quastcast = 'quantcast',
     Didomi = 'didomi',
     TrustArc = 'trustarc',
 };
@@ -14,11 +14,11 @@ const triggeredVendorPatternLists: Record<TriggeredVendor, string[]> = Object.fr
         "https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js",
         "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
     ],
-    [TriggeredVendor.Consensu]: ["https://quantcast.mgr.consensu.org/choice/*"],
     [TriggeredVendor.Didomi]: [
         "https://sdk.privacy-center.org/loader.js?*",
         "https://sdk.privacy-center.org/*/loader.js?*",
     ],
+    [TriggeredVendor.Quastcast]: ["https://quantcast.mgr.consensu.org/choice/*"],
     [TriggeredVendor.TrustArc]: [
         "https://trustarc.mgr.consensu.org/*",
     ]
