@@ -27,6 +27,10 @@
             "js": ["src/directClickers/google.ts"]
         },
         {
+            "matches": ["*://www.instagram.com/*"],
+            "js": ["src/directClickers/instagram.ts"]
+        },
+        {
             "matches": [
                 "*://www.google.com/*",
                 "*://www.google.be/*",
