@@ -1,16 +1,16 @@
 import { browser } from "webextension-polyfill-ts";
-import handleCookieBot from "./clickers/cookiebot";
-import handleConsensu from "./clickers/consensu";
-import { Vendor } from './vendors';
-import handleDidomi from "./clickers/didomi";
-import handleCookiePro from "./clickers/cookiepro";
+import handleCookieBot from "./cookiebot";
+import handleConsensu from "./consensu";
+import { TriggeredVendor } from './vendors';
+import handleDidomi from "./didomi";
+import handleCookiePro from "./cookiepro";
 
 // To avoid unsafe dynamic imports, a mapping in needed
-const mapper: Record<Vendor, Function> = {
-    [Vendor.CookieBot]: handleCookieBot,
-    [Vendor.Consensu]: handleConsensu,
-    [Vendor.Didomi]: handleDidomi,
-    [Vendor.CookiePro]: handleCookiePro,
+const mapper: Record<TriggeredVendor, Function> = {
+    [TriggeredVendor.CookieBot]: handleCookieBot,
+    [TriggeredVendor.Consensu]: handleConsensu,
+    [TriggeredVendor.Didomi]: handleDidomi,
+    [TriggeredVendor.CookiePro]: handleCookiePro,
 };
 
 const vendorsTriggered = [];

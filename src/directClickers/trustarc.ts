@@ -1,4 +1,4 @@
-import { clickWhenFound } from "./common";
+import { clickWhenFound } from "../common";
 
 (async function() {
     if (document.location.pathname === '/') {

@@ -1,4 +1,4 @@
-import { attachScriptToBodyLoad } from "./common";
+import { attachScriptToBodyLoad } from "../common";
 
 declare namespace Optanon {
     function RejectAll(): void;

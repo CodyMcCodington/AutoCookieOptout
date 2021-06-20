@@ -8,8 +8,8 @@
     "description": "Skip cookie walls! Automatically opt out of optional cookies on supported websites.",
     "background": {
         "scripts": [
-            "src/background/clickerTriggerers.ts",
-            "src/background/misc.ts"
+            "src/background/bootstrapIndirectClickers.ts",
+            "src/background/postinstall.ts"
         ]
     },
     "permissions": [
@@ -20,11 +20,11 @@
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["src/listener.ts"]
+            "js": ["src/indirectClickers/listener.ts"]
         },
         {
             "matches": ["*://consent.youtube.com/*"],
-            "js": ["src/clickers/google.ts"]
+            "js": ["src/directClickers/google.ts"]
         },
         {
             "matches": [
@@ -44,20 +44,20 @@
                 "*://consent.google.fr/*",
                 "*://consent.google.nl/*"
             ],
-            "js": ["src/clickers/google.ts"]
+            "js": ["src/directClickers/google.ts"]
         },
         {
             "matches": ["*://consent.yahoo.com/*"],
-            "js": ["src/clickers/yahoo.ts"]
+            "js": ["src/directClickers/yahoo.ts"]
         },
         {
             "matches": ["*://consent-pref.trustarc.com/*"],
-            "js": ["src/clickers/trustarc.ts"],
+            "js": ["src/directClickers/trustarc.ts"],
             "all_frames": true
         },
         {
             "matches": ["*://gdpr-consent-tool.privacymanager.io/*"],
-            "js": ["src/clickers/liveramp.ts"],
+            "js": ["src/directClickers/liveramp.ts"],
             "all_frames": true
         }
     ],

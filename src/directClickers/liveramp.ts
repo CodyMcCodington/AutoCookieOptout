@@ -1,4 +1,4 @@
-import { clickAllElements, clickWhenFound } from "./common";
+import { clickAllElements, clickWhenFound } from "../common";
 
 (async function() {
     await clickWhenFound('button#manageSettings');

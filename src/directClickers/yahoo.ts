@@ -1,4 +1,4 @@
-import { clickElement } from "./common";
+import { clickElement } from "../common";
 
 if (document.location.pathname === '/v2/collectConsent') {
     // Page 1
