@@ -65,10 +65,15 @@ async function waitUntilFound(selector: string) {
     })
 }
 
+function hasEuConsentCookie(cookie: string): boolean {
+    return !!cookie.match('euconsent-v2=');
+}
+
 export {
     attachScriptToBodyLoad,
     clickElement,
     clickAllElements,
     clickWhenFound,
     clickAllWhenFound,
+    hasEuConsentCookie,
 };

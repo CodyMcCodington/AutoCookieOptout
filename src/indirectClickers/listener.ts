@@ -4,6 +4,7 @@ import handleConsensu from "./consensu";
 import { TriggeredVendor } from './vendors';
 import handleDidomi from "./didomi";
 import handleCookiePro from "./cookiepro";
+import handleTrustArc from "./trustarc";
 
 // To avoid unsafe dynamic imports, a mapping in needed
 const mapper: Record<TriggeredVendor, Function> = {
@@ -11,6 +12,7 @@ const mapper: Record<TriggeredVendor, Function> = {
     [TriggeredVendor.CookiePro]: handleCookiePro,
     [TriggeredVendor.Consensu]: handleConsensu,
     [TriggeredVendor.Didomi]: handleDidomi,
+    [TriggeredVendor.TrustArc]: handleTrustArc,
 };
 
 const vendorsTriggered = [];
