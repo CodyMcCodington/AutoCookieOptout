@@ -1,3 +1,14 @@
+import { browser } from "webextension-polyfill-ts";
+
+function attachPageScriptForClicker(clickerSlug: string) {
+    const scriptTag = document.createElement('script');
+    scriptTag.src = browser.runtime.getURL(`src/indirectClickers/${clickerSlug}.pagescript.js`);
+    scriptTag.onload = function() {
+        scriptTag.remove();
+    };
+    attachScriptToBodyLoad(scriptTag);
+}
+
 function attachScriptToBodyLoad(scriptElement: HTMLScriptElement) {
     if (document.body) {
         console.debug('Inject script into body');
@@ -65,15 +76,11 @@ async function waitUntilFound(selector: string) {
     })
 }
 
-function hasEuConsentCookie(cookie: string): boolean {
-    return !!cookie.match('euconsent-v2=');
-}
-
 export {
+    attachPageScriptForClicker,
     attachScriptToBodyLoad,
     clickElement,
     clickAllElements,
     clickWhenFound,
     clickAllWhenFound,
-    hasEuConsentCookie,
 };

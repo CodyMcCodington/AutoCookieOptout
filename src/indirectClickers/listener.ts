@@ -22,8 +22,12 @@ browser.runtime.onMessage.addListener(message => {
 
     if (mapper[message]) {
         if (!vendorsTriggered.includes(mapper[message])) {
-            console.debug('Firing up clicker');
-            mapper[message]();
+            if (document.cookie.match('euconsent-v2=')) {
+                console.debug('Consent cookie found, assuming already opted out');
+            } else {
+                console.debug('Firing up clicker');
+                mapper[message]();
+            }
         } else {
             console.debug('Clicker has been triggered on this page before, ignoring');
         }
