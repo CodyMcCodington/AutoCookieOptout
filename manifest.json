@@ -59,6 +59,14 @@
             "matches": ["*://gdpr-consent-tool.privacymanager.io/*"],
             "js": ["src/directClickers/liveramp.ts"],
             "all_frames": true
+        },
+        {
+            "matches": [
+                "*://*/index.html?message_id=*&consentUUID=*&requestUUID=*&preload_message=*",
+                "*://*/privacy-manager/index.html?message_id=*&site_id=*&consent_origin=*&requestUUID=*"
+            ],
+            "js": ["src/directClickers/sourcepoint.ts"],
+            "all_frames": true
         }
     ],
     "web_accessible_resources": [
