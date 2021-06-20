@@ -8,9 +8,9 @@ import handleCookiePro from "./cookiepro";
 // To avoid unsafe dynamic imports, a mapping in needed
 const mapper: Record<TriggeredVendor, Function> = {
     [TriggeredVendor.CookieBot]: handleCookieBot,
+    [TriggeredVendor.CookiePro]: handleCookiePro,
     [TriggeredVendor.Consensu]: handleConsensu,
     [TriggeredVendor.Didomi]: handleDidomi,
-    [TriggeredVendor.CookiePro]: handleCookiePro,
 };
 
 const vendorsTriggered = [];
