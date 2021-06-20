@@ -1,7 +1,10 @@
-import { clickWhenFound } from "../common";
+import { clickAllWhenFound, clickWhenFound } from "../common";
 
 (async function() {
-    if (document.location.pathname === '/') {
+    const searchParams = new URLSearchParams(document.location.search);
+
+    // Standalone variant where everything happens in an iframe
+    if (document.location.pathname === '/' && searchParams.get('layout') === 'default_eu') {
         await clickWhenFound('.shp');
 
         // TrustArc's submit button is a little bit buggy. Sometimes it breaks and outputs
@@ -23,5 +26,10 @@ import { clickWhenFound } from "../common";
         }
         submitForm();
         console.debug('TrustArc popup handled');
+    }
+    // Variant that is initiated through Trustarc's indirect clicker which creates an
+    // iframe we have to hook in to directly
+    else if (document.location.pathname === '/' && searchParams.get('layout') === 'iab') {
+        await clickWhenFound('.rejectAll');
     }
 })();

@@ -5,6 +5,7 @@ enum TriggeredVendor {
     CookiePro = 'cookiepro',
     Consensu = 'consensu',
     Didomi = 'didomi',
+    TrustArc = 'trustarc',
 };
 
 const triggeredVendorPatternLists: Record<TriggeredVendor, string[]> = Object.freeze({
@@ -18,6 +19,9 @@ const triggeredVendorPatternLists: Record<TriggeredVendor, string[]> = Object.fr
         "https://sdk.privacy-center.org/loader.js?*",
         "https://sdk.privacy-center.org/*/loader.js?*",
     ],
+    [TriggeredVendor.TrustArc]: [
+        "https://trustarc.mgr.consensu.org/*",
+    ]
 });
 
 export { TriggeredVendor, triggeredVendorPatternLists };

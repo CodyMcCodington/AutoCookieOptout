@@ -1,7 +1,7 @@
-import { clickWhenFound } from "../common";
+import { clickWhenFound, hasEuConsentCookie } from "../common";
 
 async function handle() {
-    if (document.cookie.match('euconsent-v2=')) {
+    if (hasEuConsentCookie(document.cookie)) {
         console.debug('Assuming already opted out');
     } else {
         await clickWhenFound('.qc-cmp2-summary-buttons button[mode=secondary]');
