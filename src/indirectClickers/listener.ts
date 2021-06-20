@@ -1,6 +1,6 @@
 import { browser } from "webextension-polyfill-ts";
 import handleCookieBot from "./cookiebot";
-import handleConsensu from "./consensu";
+import handleQuastcast from "./quantcast";
 import { TriggeredVendor } from './vendors';
 import handleDidomi from "./didomi";
 import handleCookiePro from "./cookiepro";
@@ -10,8 +10,8 @@ import handleTrustArc from "./trustarc";
 const mapper: Record<TriggeredVendor, Function> = {
     [TriggeredVendor.CookieBot]: handleCookieBot,
     [TriggeredVendor.CookiePro]: handleCookiePro,
-    [TriggeredVendor.Consensu]: handleConsensu,
     [TriggeredVendor.Didomi]: handleDidomi,
+    [TriggeredVendor.Quastcast]: handleQuastcast,
     [TriggeredVendor.TrustArc]: handleTrustArc,
 };
 
