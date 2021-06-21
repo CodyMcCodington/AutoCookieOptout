@@ -1,0 +1,5 @@
+[Auto Cookie Optout compatibility tweaks]
+! Compatibility tweaks for content blockers that support Adblock Plus syntax
+
+! Resolves an EasyPrivacy conflict
+@@||quantcast.mgr.consensu.org^*/cmp2.js
