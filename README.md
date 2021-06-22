@@ -10,8 +10,14 @@ Traditional content blockers may cause the following problems when blocking cook
 ACO's approach differs from those content blockers in that it actively signals the website that you don't consent to optional cookies. With Auto Cookie Optout, sites should behave the same as when you manually opt out in the popup.
 
 ## How to install
-- [Download at Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/auto-cookie-optout/)
+- [Download at Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/auto-cookie-optout/).
 - Older versions may still be available from the Releases section for sideloading
+- Have any content blockers installed?
+  - uBlock Origin: you may want to install the [filter list](https://raw.githubusercontent.com/CodyMcCodington/AutoCookieOptout/main/compatibilityList.txt) for compatibility with its default settings.
+  - If you customized your configuration or use another content blocker, you may need to adjust your settings to ensure Auto Cookie Optout can communicate with cookie popups and register your optout.
+
+## How to build
+`yarn`, then `yarn build`, then look under `dist/webext-prod`.
 
 ## Questions
 
