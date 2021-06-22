@@ -1,4 +1,8 @@
-[Auto Cookie Optout compatibility tweaks]
+[Adblock Plus 2.0]
+! Title: Auto Cookie Optout compatibility tweaks
+! Expires: 3 days (update frequency)
+! Homepage: https://github.com/CodyMcCodington/AutoCookieOptout
+!
 ! Compatibility tweaks for content blockers that support Adblock Plus syntax
 
 ! Resolves an EasyPrivacy conflict
