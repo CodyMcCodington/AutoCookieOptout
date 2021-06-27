@@ -4,7 +4,7 @@ import { log } from "./logger";
 function attachPageScriptForClicker(clickerSlug: string) {
     const scriptTag = document.createElement('script');
     scriptTag.src = browser.runtime.getURL(`src/indirectClickers/${clickerSlug}.pagescript.js`);
-    scriptTag.onload = function() {
+    scriptTag.onload = function () {
         scriptTag.remove();
     };
     attachScriptToBodyLoad(scriptTag);
@@ -98,6 +98,31 @@ async function waitUntilFound(selector: string) {
     })
 }
 
+function untilStable(milliseconds: number) {
+    return new Promise<void>((resolve) => {
+        let lastChange = Date.now();
+        const observer = new MutationObserver(() => {
+            lastChange = Date.now();
+        });
+        observer.observe(document.querySelector('html'), {
+            subtree: true,
+            childList: true,
+            attributes: true,
+        });
+
+        function callback() {
+            if (Date.now() - lastChange >= milliseconds) {
+                log('Page seems stable');
+                observer.disconnect();
+                resolve();
+            } else {
+                log(`Waiting ${milliseconds} more milliseconds until stable`);
+                setTimeout(callback, milliseconds);
+            }
+        }
+        callback();
+    })
+}
 export {
     attachPageScriptForClicker,
     attachScriptToBodyLoad,
@@ -106,4 +131,5 @@ export {
     clickWhenFound,
     clickAllWhenFound,
     retryUntil,
+    untilStable,
 };
