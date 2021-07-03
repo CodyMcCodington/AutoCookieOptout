@@ -86,6 +86,7 @@
         }
     ],
     "web_accessible_resources": [
+        "src/common.pagescript.ts",
         "src/indirectClickers/*.pagescript.ts"
     ],
     "browser_specific_settings": {
