@@ -21,6 +21,7 @@ const triggeredVendorPatternLists: Record<TriggeredVendor, string[]> = Object.fr
     [TriggeredVendor.Quastcast]: ["https://quantcast.mgr.consensu.org/choice/*"],
     [TriggeredVendor.TrustArc]: [
         "https://trustarc.mgr.consensu.org/*",
+        "https://consent.trustarc.com/notice?*",
     ]
 });
 
