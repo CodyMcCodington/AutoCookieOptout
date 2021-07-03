@@ -1,4 +1,8 @@
+// This script should only be imported in content scripts or background scripts. For common
+// functions that are safe for use within page scripts, see common.pagescript.ts instead.
+
 import { browser } from "webextension-polyfill-ts";
+import { retryUntil } from "./common.pagescript";
 import { log } from "./logger";
 
 function attachPageScriptForClicker(clickerSlug: string) {
@@ -52,27 +56,6 @@ async function clickWhenFound(selector: string) {
 async function clickAllWhenFound(selector: string) {
     await waitUntilFound(selector);
     clickAllElements(selector);
-}
-
-function retryUntil<T>(func: () => boolean, retryInterval: number, maxAttempts?: number) {
-    return new Promise<void>((resolve, reject) => {
-        let attemptsDone = 0;
-
-        function doAttempt() {
-            const outcome = func();
-            if (outcome) {
-                log(`Attempt ${attemptsDone + 1} successful`);
-                resolve();
-            } else if (attemptsDone < maxAttempts || maxAttempts === undefined) {
-                attemptsDone++;
-                log(`Attempt ${attemptsDone} unsuccessful, snoozing`)
-                setTimeout(doAttempt, retryInterval);
-            } else {
-                reject();
-            }
-        }
-        doAttempt();
-    })
 }
 
 async function waitUntilFound(selector: string) {

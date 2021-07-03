@@ -1,3 +1,4 @@
+import { retryUntil } from "../common.pagescript";
 import { log } from "../logger";
 
 export {};
@@ -12,22 +13,18 @@ declare global {
 }
 
 let injectionWaitTries = 0;
-function optout() {
-    if (typeof window.Didomi !== 'undefined' || document.querySelector('#didomi-popup')) {
+async function optout() {
+    try {
+        log('Waiting until Didomi is present');
+        await retryUntil(() => !!window.Didomi, 50, 100);
         if (window.Didomi.getUserStatus().purposes.consent.disabled.length === 0) {
             log('Opting out');
             window.Didomi.setUserDisagreeToAll();
         } else {
             log('Assuming already opted out');
         }
-    } else {
-        injectionWaitTries++;
-        if (injectionWaitTries < 100) {
-            log('Wait for window.Didomi or dialog to appear');
-            setTimeout(optout, 50);
-        } else {
-            log('Giving up waiting. Possible interference from other extensions.');
-        }
+    } catch (error) {
+        log(`Giving up waiting. Possible interference from other extensions. Inner error: ${error}`);
     }
 }
 optout();
