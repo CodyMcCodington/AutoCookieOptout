@@ -6,6 +6,7 @@ import handleDidomi from "./didomi";
 import handleCookiePro from "./cookiepro";
 import handleTrustArc from "./trustarc";
 import { log } from "../logger";
+import { hasCookie } from "../common";
 
 // To avoid unsafe dynamic imports, a mapping in needed
 const mapper: Record<TriggeredVendor, Function> = {
@@ -23,7 +24,7 @@ browser.runtime.onMessage.addListener(message => {
 
     if (mapper[message]) {
         if (!vendorsTriggered.includes(mapper[message])) {
-            if (document.cookie.match('euconsent-v2=')) {
+            if (hasCookie('euconsent-v2')) {
                 log('Consent cookie found, assuming already opted out');
             } else {
                 log('Firing up clicker');
