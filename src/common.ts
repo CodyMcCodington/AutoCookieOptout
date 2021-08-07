@@ -53,9 +53,28 @@ async function clickWhenFound(selector: string) {
     clickElement(selector);
 }
 
+async function clickWhenOneOfFollowingFound(selectors: string[]) {
+    const matchedSelector = await untilOneOfFollowingFound(selectors);
+    clickElement(matchedSelector);
+    return matchedSelector;
+}
+
 async function clickAllWhenFound(selector: string) {
     await waitUntilFound(selector);
     clickAllElements(selector);
+}
+
+async function untilOneOfFollowingFound(selectors: string[]) {
+    const mergedSelector = selectors.join(', ');
+    await waitUntilFound(mergedSelector);
+
+    for (const selector of selectors) {
+        if (document.querySelector(selector)) {
+            return selector;
+        }
+    }
+
+    throw new Error('Illegal state when checking which selector was found');
 }
 
 async function waitUntilFound(selector: string) {
@@ -111,8 +130,10 @@ export {
     attachScriptToBodyLoad,
     clickElement,
     clickAllElements,
-    clickWhenFound,
     clickAllWhenFound,
+    clickWhenFound,
+    clickWhenOneOfFollowingFound,
     retryUntil,
+    untilOneOfFollowingFound,
     untilStable,
 };
