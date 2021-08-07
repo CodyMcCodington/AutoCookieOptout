@@ -23,7 +23,7 @@
             "js": ["src/indirectClickers/listener.ts"]
         },
         {
-            "matches": ["*://consent.youtube.com/*"],
+            "matches": ["*://consent.youtube.com/*", "*://www.youtube.com/*"],
             "js": ["src/directClickers/google.ts"]
         },
         {
