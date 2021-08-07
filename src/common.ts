@@ -64,6 +64,10 @@ async function clickAllWhenFound(selector: string) {
     clickAllElements(selector);
 }
 
+function hasCookie(cookieName: string) {
+    return !!document.cookie.match(`${cookieName}=`);
+}
+
 async function untilOneOfFollowingFound(selectors: string[]) {
     const mergedSelector = selectors.join(', ');
     await waitUntilFound(mergedSelector);
@@ -133,6 +137,7 @@ export {
     clickAllWhenFound,
     clickWhenFound,
     clickWhenOneOfFollowingFound,
+    hasCookie,
     retryUntil,
     untilOneOfFollowingFound,
     untilStable,
