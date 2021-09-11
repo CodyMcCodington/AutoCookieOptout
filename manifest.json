@@ -72,7 +72,10 @@
             "all_frames": true
         },
         {
-            "matches": ["*://gdpr-consent-tool.privacymanager.io/*"],
+            "matches": [
+                "*://gdpr-consent-tool.privacymanager.io/*",
+                "*://cmp-consent-tool.privacymanager.io/*"
+            ],
             "js": ["src/directClickers/liveramp.ts"],
             "all_frames": true
         },
