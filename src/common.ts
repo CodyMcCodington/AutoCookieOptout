@@ -92,6 +92,7 @@ async function untilOneOfFollowingFound(selectors: string[]) {
 
     for (const selector of selectors) {
         if (document.querySelector(selector)) {
+            log(`Matched with selector ${selector}`);
             return selector;
         }
     }
