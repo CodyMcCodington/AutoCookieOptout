@@ -5,7 +5,7 @@ import { TriggeredVendor } from './vendors';
 import handleDidomi from "./didomi";
 import handleCookiePro from "./cookiepro";
 import handleTrustArc from "./trustarc";
-import { log } from "../logger";
+import { log, logError } from "../logger";
 import { hasCookie } from "../common";
 
 // To avoid unsafe dynamic imports, a mapping in needed
@@ -17,22 +17,28 @@ const mapper: Record<TriggeredVendor, Function> = {
     [TriggeredVendor.TrustArc]: handleTrustArc,
 };
 
-const vendorsTriggered = [];
+const vendorsTriggered: string[] = [];
 
-browser.runtime.onMessage.addListener(message => {
-    log(`Got message '${message}' from the background script`);
+browser.runtime.onMessage.addListener(async (message) => {
+    try {
+        log(`Got message '${message}' from the background script`);
 
-    if (mapper[message]) {
-        if (!vendorsTriggered.includes(mapper[message])) {
-            if (hasCookie('euconsent-v2')) {
-                log('Consent cookie found, assuming already opted out');
+        if (mapper[message]) {
+            if (!vendorsTriggered.includes(message)) {
+                if (hasCookie('euconsent-v2')) {
+                    log('Consent cookie found, assuming already opted out');
+                } else {
+                    log('Firing up clicker');
+                    await mapper[message]();
+                    vendorsTriggered.push(message);
+                    log(`Finished '${message}' handler execution`);
+                }
             } else {
-                log('Firing up clicker');
-                mapper[message]();
+                log('Clicker has been triggered on this page before, ignoring');
             }
-        } else {
-            log('Clicker has been triggered on this page before, ignoring');
         }
+    } catch (error) {
+        logError(error);
     }
 });
 
