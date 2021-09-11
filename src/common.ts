@@ -3,7 +3,7 @@
 
 import { browser } from "webextension-polyfill-ts";
 import { retryUntil } from "./common.pagescript";
-import { log } from "./logger";
+import { log, logClick } from "./logger";
 
 function attachPageScriptForClicker(clickerSlug: string) {
     const scriptTag = document.createElement('script');
@@ -29,7 +29,7 @@ function attachScriptToBodyLoad(scriptElement: HTMLScriptElement) {
 function clickElement(selector: string, ignoreIfNotPresent = false) {
     const element = document.querySelector(selector);
     if (element instanceof HTMLElement) {
-        log(`Clicking ${selector}`);
+        logClick(selector);
         element.click();
     } else if (!element && ignoreIfNotPresent) {
         return;
