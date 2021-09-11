@@ -38,6 +38,24 @@ function clickElement(selector: string, ignoreIfNotPresent = false) {
     }
 }
 
+function clickElementIfTextMatches(selector: string, expectedText: string, ignoreIfNotPresent = false) {
+    const element = document.querySelector(selector);
+    if (!element) {
+        if (ignoreIfNotPresent) return false;
+        throw new Error(`${selector} does not refer to HTML element`);
+    }
+
+    const actualText = element.textContent.trim();
+    if (actualText === expectedText) {
+        log(`Found the "${expectedText}" button`);
+        clickElement(selector);
+        return true;
+    } else {
+        log(`Selector mismatch for '${selector}' - Expected "${expectedText}", found "${actualText}"`);
+        return false;
+    }
+}
+
 function clickAllElements(selector: string) {
     log(`Clicking all matches of ${selector}`);
     const elements = document.querySelectorAll(selector);
@@ -132,9 +150,10 @@ function untilStable(milliseconds: number) {
 export {
     attachPageScriptForClicker,
     attachScriptToBodyLoad,
-    clickElement,
     clickAllElements,
     clickAllWhenFound,
+    clickElement,
+    clickElementIfTextMatches,
     clickWhenFound,
     clickWhenOneOfFollowingFound,
     hasCookie,
