@@ -25,14 +25,10 @@ browser.runtime.onMessage.addListener(async (message) => {
 
         if (mapper[message]) {
             if (!vendorsTriggered.includes(message)) {
-                if (hasCookie('euconsent-v2')) {
-                    log('Consent cookie found, assuming already opted out');
-                } else {
-                    log('Firing up clicker');
-                    await mapper[message]();
-                    vendorsTriggered.push(message);
-                    log(`Finished '${message}' handler execution`);
-                }
+                log('Firing up clicker');
+                await mapper[message]();
+                vendorsTriggered.push(message);
+                log(`Finished '${message}' handler execution`);
             } else {
                 log('Clicker has been triggered on this page before, ignoring');
             }
