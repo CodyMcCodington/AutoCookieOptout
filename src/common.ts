@@ -82,6 +82,12 @@ async function clickAllWhenFound(selector: string) {
     clickAllElements(selector);
 }
 
+function getCookie(cookieName: string): string | undefined {
+    const cookieMatcher = document.cookie.match(`(?:^| )${cookieName}=([^;]+)`);
+    if (!cookieMatcher) return undefined;
+    return cookieMatcher[1];
+}
+
 function hasCookie(cookieName: string) {
     return !!document.cookie.match(`${cookieName}=`);
 }
@@ -157,6 +163,7 @@ export {
     clickElementIfTextMatches,
     clickWhenFound,
     clickWhenOneOfFollowingFound,
+    getCookie,
     hasCookie,
     retryUntil,
     untilOneOfFollowingFound,
