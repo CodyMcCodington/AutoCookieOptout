@@ -1,8 +1,18 @@
-import { clickElement, clickElementIfTextMatches, clickWhenFound, clickWhenOneOfFollowingFound, untilOneOfFollowingFound, untilStable } from "../common";
+import { clickElement, clickElementIfTextMatches, clickWhenFound, clickWhenOneOfFollowingFound, hasCookie, untilOneOfFollowingFound, untilStable } from "../common";
 import { log } from "../logger";
 
 async function handle() {
     const fallbackSelector = '.qc-cmp2-summary-buttons button[mode=secondary]';
+
+    // If a consent cookie is already present, hold on a little bit in case
+    // the website is going to ask for permission again
+    if (hasCookie('euconsent-v2')) {
+        await untilStable(1000);
+        if (!document.querySelector(fallbackSelector)) {
+            log('Assuming already opted out of Quantcast');
+            return;
+        }
+    }
 
     // Sometimes Quantcast displays the optout button right away. Other times
     // we may have to go into advanced settings to opt out.
