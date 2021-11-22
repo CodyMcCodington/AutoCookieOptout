@@ -24,8 +24,9 @@ const regexConsentGoogleOrYouTube = /^consent\.(google\.[a-z]+|youtube\.com)$/;
 if (document.location.hostname.match(regexGoogleMainOrImages)) {
     // Page 1 when consent is collected through an in-page popup
     // on Google web search or Google Images. Press the 'Customize'
-    // button.
-    handleInPagePopup('.jyfHyd');
+    // button. Selector 1 is from an older google version, selector 2
+    // is a newer variation.
+    handleInPagePopup('.jyfHyd, #VnjCcb');
 } else if (document.location.hostname.match(/^consent\.google\.[a-z]+$/)
         && document.location.pathname === '/m') {
     // Page 1 when consent is collected by redirecting to a full page
