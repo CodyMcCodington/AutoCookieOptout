@@ -86,6 +86,10 @@
             ],
             "js": ["src/directClickers/sourcepoint.ts"],
             "all_frames": true
+        },
+        {
+            "matches": ["*://*.fandom.com/*"],
+            "js": ["src/directClickers/fandom.ts"]
         }
     ],
     "web_accessible_resources": [
