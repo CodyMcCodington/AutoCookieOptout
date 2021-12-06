@@ -13,6 +13,7 @@
         ]
     },
     "permissions": [
+        "storage",
         "webRequest",
         "webRequestBlocking",
         "<all_urls>"
@@ -93,6 +94,16 @@
         {
             "matches": ["*://*.fandom.com/*"],
             "js": ["src/directClickers/fandom.ts"]
+        },
+        {
+            "matches": [
+                "*://www.amazon.co.uk/*",
+                "*://www.amazon.de/*",
+                "*://www.amazon.fr/*",
+                "*://www.amazon.it/*",
+                "*://www.amazon.nl/*"
+            ],
+            "js": ["src/directClickers/amazon-eu.ts"]
         }
     ],
     "web_accessible_resources": [
