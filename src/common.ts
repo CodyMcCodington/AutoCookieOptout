@@ -26,6 +26,12 @@ function attachScriptToBodyLoad(scriptElement: HTMLScriptElement) {
     }
 }
 
+async function clearSetting(setting: string) {
+    await browser.storage.local.set({
+        [setting]: undefined,
+    });
+}
+
 function clickElement(selector: string, ignoreIfNotPresent = false) {
     const element = document.querySelector(selector);
     if (element instanceof HTMLElement) {
@@ -88,8 +94,18 @@ function getCookie(cookieName: string): string | undefined {
     return cookieMatcher[1];
 }
 
+async function getSetting(setting: string) {
+    return (await browser.storage.local.get(setting))[setting];
+}
+
 function hasCookie(cookieName: string) {
     return !!document.cookie.match(`${cookieName}=`);
+}
+
+async function setSetting(setting: string, value: string) {
+    await browser.storage.local.set({
+        [setting]: value,
+    });
 }
 
 async function untilOneOfFollowingFound(selectors: string[]) {
@@ -130,6 +146,16 @@ async function waitUntilFound(selector: string) {
 }
 
 function untilStable(milliseconds: number) {
+    return untilStableOrCondition(milliseconds, async () => false);
+}
+
+function untilStableOrCondition(milliseconds: number, condition?: () => Promise<boolean>) {
+    if (condition) {
+        log(`Waiting until stable for ${milliseconds} ms or condition is true`);
+    } else {
+        log(`Waiting until stable for ${milliseconds} ms`);
+    }
+
     return new Promise<void>((resolve) => {
         let lastChange = Date.now();
         const observer = new MutationObserver(() => {
@@ -142,21 +168,35 @@ function untilStable(milliseconds: number) {
         });
 
         function callback() {
-            if (Date.now() - lastChange >= milliseconds) {
+            const millisecondsPassed = Date.now() - lastChange;
+            if (millisecondsPassed >= milliseconds) {
                 log('Page seems stable');
                 observer.disconnect();
                 resolve();
+            } else if (condition) {
+                condition().then((result) => {
+                    if (result) {
+                        log('Condition has been resolved');
+                        observer.disconnect();
+                        resolve();
+                    } else {
+                        log(`Condition unresolved, snoozing an extra ${milliseconds} ms. Last change at ${lastChange}.`);
+                        setTimeout(callback, milliseconds);
+                    }
+                });
             } else {
-                log(`Waiting ${milliseconds} more milliseconds until stable`);
+                log(`Waiting an extra ${milliseconds} ms until stable. Last change at ${lastChange}.`);
                 setTimeout(callback, milliseconds);
             }
         }
         callback();
-    })
+    });
 }
+
 export {
     attachPageScriptForClicker,
     attachScriptToBodyLoad,
+    clearSetting,
     clickAllElements,
     clickAllWhenFound,
     clickElement,
@@ -164,8 +204,11 @@ export {
     clickWhenFound,
     clickWhenOneOfFollowingFound,
     getCookie,
+    getSetting,
     hasCookie,
     retryUntil,
+    setSetting,
     untilOneOfFollowingFound,
     untilStable,
+    untilStableOrCondition,
 };
