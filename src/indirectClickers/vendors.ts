@@ -13,6 +13,7 @@ const triggeredVendorPatternLists: Record<TriggeredVendor, string[]> = Object.fr
     [TriggeredVendor.CookiePro]: [
         "https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js",
         "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+        "https://geolocation.onetrust.com/cookieconsentpub/*",
     ],
     [TriggeredVendor.Didomi]: [
         "https://sdk.privacy-center.org/loader.js?*",
