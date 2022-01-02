@@ -35,7 +35,8 @@ async function handle() {
             potentialAgreeToSelectedSelector,
         ]);
 
-        // Reject all if the option is found
+        // Reject all if the option is found. If the config rewriter worked, this button is expected
+        // to always be here.
         if (foundSelector2 === rejectAllSelector) {
             log('Found a "Reject all" button');
             clickElement(rejectAllSelector);

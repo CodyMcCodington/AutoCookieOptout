@@ -9,7 +9,8 @@
     "background": {
         "scripts": [
             "src/background/bootstrapIndirectClickers.ts",
-            "src/background/postinstall.ts"
+            "src/background/postinstall.ts",
+            "src/background/quantcastConfigRewriter.ts"
         ]
     },
     "permissions": [
