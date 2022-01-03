@@ -5,6 +5,12 @@ import { browser } from "webextension-polyfill-ts";
 import { retryUntil } from "./common.pagescript";
 import { log, logClick } from "./logger";
 
+function assertNotPresent(selector: string) {
+    if (document.querySelector(selector)) {
+        throw new Error(`Selector ${selector} should be empty, but wasn't. Backing off.`);
+    }
+}
+
 function attachPageScriptForClicker(clickerSlug: string) {
     const scriptTag = document.createElement('script');
     scriptTag.src = browser.runtime.getURL(`src/indirectClickers/${clickerSlug}.pagescript.js`);
@@ -194,6 +200,7 @@ function untilStableOrCondition(milliseconds: number, condition?: () => Promise<
 }
 
 export {
+    assertNotPresent,
     attachPageScriptForClicker,
     attachScriptToBodyLoad,
     clearSetting,
