@@ -17,7 +17,8 @@
     "@parcel/core": "2.0.0-beta.3.1",
     "@parcel/transformer-sass": "2.0.0-beta.3.1",
     "parcel": "2.0.0-beta.3.1",
-    "webextension-polyfill-ts": "^0.25.0",
-    "typescript": "^4.3.2"
-  }
+    "typescript": "^4.3.2",
+    "webextension-polyfill-ts": "^0.25.0"
+  },
+  "dependencies": {}
 }
