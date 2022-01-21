@@ -7,23 +7,13 @@ assignees: ''
 
 ---
 
+Auto Cookie Optout version: <!-- Which version are you using? -->
+
 **Describe the bug**
 <!-- A clear and concise description of what the bug is. -->
 
-**Reproduction steps**
+**How can we replicate the bug?**
 <!-- Add steps here. -->
-
-**Expected behavior**
-<!-- A clear and concise description of what you expected to happen. -->
-
-**Screenshots**
-<!-- If applicable, add screenshots to help explain your problem. -->
-
-**Specifications:**
-<!-- Complete this section -->
-- OS: 
-- Firefox version: 
-- Auto Cookie Optout version:
 
 **Additional context**
 <!-- Add any other context about the problem here. -->
