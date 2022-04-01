@@ -9,7 +9,10 @@ enum TriggeredVendor {
 };
 
 const triggeredVendorPatternLists: Record<TriggeredVendor, string[]> = Object.freeze({
-    [TriggeredVendor.CookieBot]: ["https://consent.cookiebot.com/uc.js"],
+    [TriggeredVendor.CookieBot]: [
+        "https://consent.cookiebot.com/uc.js",
+        "https://consent.cookiebot.eu/*/cc.js?*",
+    ],
     [TriggeredVendor.CookiePro]: [
         "https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js",
         "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
