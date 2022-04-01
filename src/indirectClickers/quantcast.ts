@@ -37,6 +37,7 @@ async function handle() {
     clickElementIfTextMatches('.qc-cmp2-header-links button:nth-child(1)', 'OBJECT ALL');
     log('Objected to all via top button');
     
+    await untilStable(100);
     const saveAndExitSelector = '.qc-cmp2-buttons-desktop button';
     await untilOneOfFollowingFound([saveAndExitSelector]);
     clickElementIfTextMatches(saveAndExitSelector, 'SAVE & EXIT');
