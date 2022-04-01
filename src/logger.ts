@@ -1,13 +1,13 @@
 function log(message: string) {
-    console.debug(`%cACO 🛡 %c${message}`, "color: green", "color: black");
+    console.debug(`ACO 🛡 ${message}`);
 }
 
 function logClick(selector: string) {
-    console.debug(`%cACO 🛡 %cClicking '%c${selector}%c'`, "color: green", "color: black", "color: purple", "color: black");
+    console.debug(`ACO 🛡 Clicking '${selector}'`);
 }
 
 function logError(message: string) {
-    console.error(`%cACO 🛡 %c${message}`, "color: red", "color: black");
+    console.error(`ACO 🛡 ${message}`);
 }
 
 export {
