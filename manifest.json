@@ -105,6 +105,13 @@
                 "*://www.amazon.nl/*"
             ],
             "js": ["src/directClickers/amazon-eu.ts"]
+        },
+        {
+            "matches": [
+                "*://store.steampowered.com/*",
+                "*://steamcommunity.com/*"
+            ],
+            "js": ["src/directClickers/steam.ts"]
         }
     ],
     "web_accessible_resources": [
