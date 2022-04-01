@@ -37,6 +37,8 @@ Non-exhaustive list of supported websites:
 - Various Google properties including web search, Google Maps and YouTube (including some regional variations)
 - Yahoo and affiliated websites like TechCrunch
 
+At this time, we do not take new feature requests due to lack of time.
+
 ### Why does the extension need permission to run on all websites?
 We don't have a full list of every domain name we support. If you're on a website that happens to use a compatible third-party cookie consent vendor, the plugin will detect it and take action. We've open sourced the extension so you can verify that we use this permission responsibly. If you want to compare a local build to packed versions of the extension, our build script is `yarn build`.
 
