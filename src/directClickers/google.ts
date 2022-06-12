@@ -1,4 +1,4 @@
-import { clickAllElements, clickElement, clickWhenFound, getCookie, hasCookie } from "../common";
+import { clickAllElements, clickElement, clickWhenFound, getCookie } from "../common";
 import { log } from "../logger";
 
 function hasConsentCookieSet() {
@@ -29,13 +29,13 @@ if (document.location.hostname.match(regexGoogleMainOrImages)) {
     // is a newer variation.
     handleInPagePopup('.jyfHyd, #VnjCcb');
 } else if (document.location.hostname.match(/^consent\.google\.([a-z]+|co\.uk)$/)
-        && document.location.pathname === '/m') {
+    && document.location.pathname === '/m') {
     log('Using approach for page 1 of the Google consent process');
     // Page 1 when consent is collected by redirecting to a full page
     // in services like Google Maps
     clickElement('a[href^="https://consent.google.com/d?"], .AIC7ge > .lssxud [jsname=V67aGc]');
-} else if (document.location.hostname === 'consent.youtube.com' 
-        && document.location.pathname === '/m') {
+} else if (document.location.hostname === 'consent.youtube.com'
+    && document.location.pathname === '/m') {
     log('Using approach for page 1 of the YouTube consent process');
     // Page 1 when consent is collected by redirecting to a full page
     // on YouTube
@@ -46,15 +46,24 @@ if (document.location.hostname.match(regexGoogleMainOrImages)) {
     // 'Customize' button. Press the 'Customize' button.
     handleInPagePopup('a[href^="https://consent.youtube.com/d?"]');
 } else if (document.location.hostname.match(regexConsentGoogleOrYouTube)
-        && document.location.pathname === '/d') {
+    && document.location.pathname === '/d') {
     log('Using approach for page 2 of the Google/YouTube consent process (variation 1)');
     // Page 2 for Google and YouTube (specific variants)
+
+    // An easy "Reject All" exit may be present. So far only spotted on YouTube
+    clickElement('[jsname=wsVcxe]', true);
+
+    // Still here? Take the scenic route past the individual opt outs
     clickElement('[jsname=yUNjVb]');
     clickElement('[jsname=FXYDXd]');
     clickElement('[jsname=SHqtNc]');
-    document.querySelector('form').submit();
+
+    const formElement = document.querySelector('form');
+    if (formElement instanceof HTMLFormElement) {
+        formElement.submit();
+    }
 } else if (document.location.hostname.match(regexConsentGoogleOrYouTube)
-        && document.location.pathname === '/dl') {
+    && document.location.pathname === '/dl') {
     log('Using approach for page 2 of the Google/YouTube consent process (variation 2)');
     // Page 2 for Google and YouTube (specific variants)
     clickAllElements('.setting input[value="false"]');

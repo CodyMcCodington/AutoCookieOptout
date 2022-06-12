@@ -57,7 +57,7 @@ function clickElementIfTextMatches(selector: string, expectedText: string, ignor
         throw new Error(`${selector} does not refer to HTML element`);
     }
 
-    const actualText = element.textContent.trim();
+    const actualText = assertNotNull(element.textContent).trim();
     if (actualText === expectedText) {
         log(`Found the "${expectedText}" button`);
         clickElement(selector);
@@ -142,7 +142,7 @@ async function waitUntilFound(selector: string) {
             callback(document);
         });
 
-        observer.observe(document.querySelector('html'), {
+        observer.observe(assertNotNull(document.querySelector('html')), {
             subtree: true,
             childList: true,
             attributes: true,
@@ -153,6 +153,14 @@ async function waitUntilFound(selector: string) {
 
 function untilStable(milliseconds: number) {
     return untilStableOrCondition(milliseconds, async () => false);
+}
+
+function assertNotNull<T>(element: T | null, message: string = 'object should not be null'): T {
+    if (element === null) {
+        throw new Error(`Assertion failed: ${message}`);
+    }
+
+    return element;
 }
 
 function untilStableOrCondition(milliseconds: number, condition?: () => Promise<boolean>) {
@@ -167,7 +175,7 @@ function untilStableOrCondition(milliseconds: number, condition?: () => Promise<
         const observer = new MutationObserver(() => {
             lastChange = Date.now();
         });
-        observer.observe(document.querySelector('html'), {
+        observer.observe(assertNotNull(document.querySelector('html')), {
             subtree: true,
             childList: true,
             attributes: true,
