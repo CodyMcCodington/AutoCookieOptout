@@ -11,7 +11,7 @@
   "scripts": {
     "start": "parcel manifest.json src/pages/*.html --host localhost --target webext-dev",
     "attach-firefox": "cd dist && web-ext run --verbose",
-    "build": "parcel build manifest.json src/pages/*.html --target webext-prod"
+    "build": "parcel build manifest.json src/pages/*.html --target webext-prod && web-ext -s dist/webext-prod build"
   },
   "devDependencies": {
     "@parcel/config-webextension": "2.0.0-beta.3.1",

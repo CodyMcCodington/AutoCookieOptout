@@ -17,8 +17,7 @@ ACO's approach differs from those content blockers in that it actively signals t
   - If you customized your configuration or use another content blocker, you may need to adjust your settings to ensure Auto Cookie Optout can communicate with cookie popups and register your optout.
 
 ## How to build
-- In root folder: `yarn`, then `yarn build`
-- Under `dist/webext-prod`, run `web-ext build`
+In root folder: `yarn`, then `yarn build`. A ZIP should appear in the `web-ext-artifacts` folder.
 
 ## Questions
 
