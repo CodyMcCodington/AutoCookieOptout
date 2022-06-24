@@ -26,15 +26,16 @@ import { log } from "../logger";
             window.location.href = returnLink;
         }
 
+        const customizeSelector = 'form[action^="/privacyprefs"] #sp-cc-customize';
         async function cookiePopupPresent() {
-            return !!document.querySelector('form[action^="/cookieprefs"] #sp-cc-customize');
+            return !!document.querySelector(customizeSelector);
         }
 
         // Amazon's DOM tend to changes a lot after page load so make attention
         await untilStableOrCondition(400, cookiePopupPresent);
         if (await cookiePopupPresent()) {
             await writeToStorage('previousAmazonPage', window.location.href);
-            clickElement('form[action^="/cookieprefs"] #sp-cc-customize');
+            clickElement(customizeSelector);
         } else {
             log('Assuming already opted out');
         }
