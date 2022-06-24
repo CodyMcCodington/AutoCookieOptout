@@ -100,7 +100,7 @@ function getCookie(cookieName: string): string | undefined {
     return cookieMatcher[1];
 }
 
-async function getSetting(setting: string) {
+async function readFromStorage(setting: string) {
     return (await browser.storage.local.get(setting))[setting];
 }
 
@@ -108,7 +108,7 @@ function hasCookie(cookieName: string) {
     return !!document.cookie.match(`${cookieName}=`);
 }
 
-async function setSetting(setting: string, value: string) {
+async function writeToStorage(setting: string, value: string) {
     await browser.storage.local.set({
         [setting]: value,
     });
@@ -219,10 +219,10 @@ export {
     clickWhenFound,
     clickWhenOneOfFollowingFound,
     getCookie,
-    getSetting,
+    readFromStorage,
     hasCookie,
     retryUntil,
-    setSetting,
+    writeToStorage,
     untilOneOfFollowingFound,
     untilStable,
     untilStableOrCondition,
