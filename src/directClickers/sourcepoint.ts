@@ -1,13 +1,13 @@
-import { clickAllElements, clickAllWhenFound, clickElement, clickWhenFound, retryUntil, untilStable } from "../common";
+import { clickAllElements, clickAllWhenFound, clickWhenFound, untilStable } from "../common";
 import { log } from "../logger";
 
-(async function() {
+(async function () {
     if (document.location.pathname === '/index.html') {
         log('Detected Sourcepoint intro screen');
 
         // Sourcepoint selectors are quite fuzzy due to variations and lack of language-independent
         // characteristics
-        await clickWhenFound('.message-container .pg-configure-button, [aria-label="Options"],  [title="Options"]');
+        await clickWhenFound('.message-container .pg-configure-button, .message-container .sp_choice_type_12, [aria-label="Options"],  [title="Options"]');
     } else if (document.location.pathname === '/privacy-manager/index.html') {
         log('Detected Sourcepoint options screen');
         await untilStable(200);
@@ -23,7 +23,8 @@ import { log } from "../logger";
             await clickAllWhenFound('.pm-switch.checked .slider');
         }
 
-        await clickWhenFound('.message-container .pm-preferences-button, [aria-label="Save & Exit"], [title="Save & Exit"]');
+        await clickWhenFound('.message-container .sp_choice_type_REJECT_ALL,'
+            + '.message-container .pm-preferences-button, [aria-label="Save & Exit"], [title="Save & Exit"]');
         log('Sourcepoint popup handled');
     } else {
         throw new Error('Did not match with any paths');

@@ -87,7 +87,7 @@
         {
             "matches": [
                 "*://*/index.html?message_id=*&consentUUID=*&requestUUID=*&preload_message=*",
-                "*://*/privacy-manager/index.html?message_id=*&site_id=*&consent_origin=*&requestUUID=*"
+                "*://*/privacy-manager/index.html?*"
             ],
             "js": ["src/directClickers/sourcepoint.ts"],
             "all_frames": true
